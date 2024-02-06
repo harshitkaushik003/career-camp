@@ -1,0 +1,15 @@
+.logContainer{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+.logContainer form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    margin: 5px;
+}

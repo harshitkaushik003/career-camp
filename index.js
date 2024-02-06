@@ -4,6 +4,12 @@ const express = require('express');
 //create server 
 const app = express();
 
+//import express-ejs-layouts
+const expressLayouts = require('express-ejs-layouts');
+
+//require database;
+const db = require('./config/mongoose');
+
 //create port
 const port = 8000;
 
@@ -11,7 +17,6 @@ const port = 8000;
 app.use(express.static('./assets'));
 
 //load layouts
-const expressLayouts = require('express-ejs-layouts');
 app.use(expressLayouts);
 
 //extract scripts and styles
