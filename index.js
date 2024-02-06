@@ -1,6 +1,8 @@
 //require express
 const express = require('express');
 
+const cookieParser = require('cookie-parser');
+
 //create server 
 const app = express();
 
@@ -12,6 +14,9 @@ const db = require('./config/mongoose');
 
 //create port
 const port = 8000;
+
+app.use(express.urlencoded());
+app.use(cookieParser());
 
 //set up static files
 app.use(express.static('./assets'));
