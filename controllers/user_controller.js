@@ -39,3 +39,7 @@ module.exports.signIn = (req,res)=>{
         title: "signin"
     });
 }
+
+module.exports.createSession = (req, res)=>{
+    return res.redirect('/');
+}
