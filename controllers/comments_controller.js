@@ -19,3 +19,10 @@ module.exports.createComments = (req, res)=>{
     return res.redirect('/');
 }
 
+module.exports.destroyComment = (req, res)=>{
+    Comment.findByIdAndDelete(req.params.id)
+    .then((deletedComment)=>{
+        return res.redirect('/');
+    })
+}
+

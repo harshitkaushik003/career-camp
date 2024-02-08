@@ -13,6 +13,9 @@
                 <p>
                     <span><%= post.content %></span><br>
                     <small><%= post.user.name %></small>
+                    <% if (post.user.id == locals.user.id) { %>
+                        <a href=<%= `/posts/destroy/${post.id}` %>><button>Delete Post</button></a>
+                    <% } %>
                     <% if (locals.user) { %>
                         <form action="/comments/create" method="post">
                             <input type="text" name="content">
@@ -25,6 +28,9 @@
                             <span><%= comment.content %></span>
                             <br>
                             <small><%= comment.user.name %></small>
+                            <% if (comment.user.id == locals.user.id) { %>
+                                <a href=<%= `/comments/destroy/${comment.id}` %>><button>Delete Comment</button></a>
+                            <% } %>
                         </p>
                     <% } %>
                 </p>
