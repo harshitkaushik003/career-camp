@@ -1,1 +1,20 @@
 <h1>Homepage using ejs</h1>
+<% if (locals.user) { %>
+    <form action="/posts/create" method="post">
+        <textarea name="content" id="" cols="30" rows="10"></textarea>
+        <input type="submit" value="post">
+    </form>    
+<% } %>
+
+<div id="postList">
+    <ul>
+        <% for( post of posts) { %>
+            <li>
+                <p>
+                    <span><%= post.content %></span><br>
+                    <small><%= post.user.name %></small>
+                </p>
+            </li>
+        <% } %>
+    </ul>
+</div>

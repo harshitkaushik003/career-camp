@@ -1,5 +1,12 @@
+const Post = require("../models/post")
+
 module.exports.home = function(req, res){
-    return res.render('home', {
-        title: 'homepage'
-    })
+    Post.find({})
+    .populate('user')
+    .then((posts)=>{
+        return res.render('home', {
+            title: 'homepage',
+            posts: posts
+        });
+    }).catch((err)=>console.log(`error in fetching posts --> ${err}`));
 }
