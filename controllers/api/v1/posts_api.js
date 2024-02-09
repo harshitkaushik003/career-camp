@@ -21,16 +21,22 @@ module.exports.posts = async (req, res)=>{
 
 module.exports.deletePost = async(req, res)=>{
     try{
-        let deletedPost = await Post.findByIdAndDelete(req.params.id);
-        if (!deletedPost) {
-            return res.status(404).send('Post not found');
+        let post = await Post.findById(req.params.id);
+        if(post){
+            if(post.user == req.user.id){
+                await Post.deleteOne({_id : req.params.id});
+                await Comment.deleteMany({post: req.params.id});
+                return res.status(200).json({
+                    messages: "Post and related comments deleted",
+                    postID: post._id
+                });
+            }else{
+                return res.status(401).send({message: "Unauthorized"});
+            }
+        }else{
+            return res.status(500).json({message: "Post not found, check id"});
         }
-        await Comment.deleteMany({ post: req.params.id });
 
-        return res.json(200, {
-            messages: "Post and related comments deleted",
-            postID: deletedPost._id
-        })
     }catch(error){
         console.error(error);
         res.status(500).send('Internal Server Error');

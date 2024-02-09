@@ -4,7 +4,7 @@ const JWTStrategy = require('passport-jwt').Strategy;
 const EXtractJWT = require('passport-jwt').ExtractJwt;
 
 let opts = {
-    jwtFromRequest : EXtractJWT.fromAuthHeaderAsBearerToken,
+    jwtFromRequest : EXtractJWT.fromAuthHeaderAsBearerToken(),
     secretOrKey : 'jwt-auth-key'
 }
 
